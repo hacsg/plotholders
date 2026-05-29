@@ -115,6 +115,26 @@ app.use('/webhooks', webhooksRouter);
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
+// Debug endpoint to check dist directory
+app.get('/debug', (_req, res) => {
+  const fs = require('fs');
+  const distPath = DIST_DIR;
+  const portalPath = path.join(distPath, 'portal');
+  const indexPath = path.join(portalPath, 'index.html');
+  
+  const debug = {
+    cwd: process.cwd(),
+    distExists: fs.existsSync(distPath),
+    distContents: fs.existsSync(distPath) ? fs.readdirSync(distPath) : [],
+    portalExists: fs.existsSync(portalPath),
+    portalContents: fs.existsSync(portalPath) ? fs.readdirSync(portalPath) : [],
+    indexExists: fs.existsSync(indexPath),
+    indexPath: indexPath
+  };
+  
+  res.json(debug);
+});
+
 // Admin UI (Shopify embedded) - served at /admin/*
 // Protected by Shopify session in production
 const adminDist = path.join(DIST_DIR, 'admin');
