@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
+import path from 'path';
 
 import { customersRouter } from './api/customers.js';
 import { acresRouter } from './api/acres.js';
@@ -117,7 +119,6 @@ const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
 // Debug endpoint to check dist directory
 app.get('/debug', (_req, res) => {
-  const fs = require('fs');
   const distPath = DIST_DIR;
   const portalPath = path.join(distPath, 'portal');
   const indexPath = path.join(portalPath, 'index.html');
