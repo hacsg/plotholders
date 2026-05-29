@@ -4,7 +4,6 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import fs from 'fs';
-import path from 'path';
 
 import { customersRouter } from './api/customers.js';
 import { acresRouter } from './api/acres.js';
