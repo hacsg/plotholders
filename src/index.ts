@@ -29,7 +29,13 @@ const PORT = process.env.PORT || 3000;
 // ============================================
 // Security & Core Middleware
 // ============================================
+// Serve customer portal at root (must be before all middleware)
+const portalDistEarly = path.join(DIST_DIR, 'portal');
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(portalDistEarly, 'index.html'));
+});
 
+// Security headers
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
