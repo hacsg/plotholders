@@ -159,21 +159,8 @@ app.get('/staff/*splat', (_req, res) => {
 // Customer Portal (root catch-all) - must be LAST before 404
 const portalDist = path.join(DIST_DIR, 'portal');
 app.use('/', express.static(portalDist, { index: false }));
-app.get('/', (_req, res) => {
-  res.sendFile(path.join(portalDist, 'index.html'));
-});
-// SPA fallback for portal (any non-api, non-special path)
-app.get('/*splat', (req, res, next) => {
-  // Don't intercept API, webhooks, health, or already handled paths
-  if (
-    req.path.startsWith('/api') ||
-    req.path.startsWith('/webhooks') ||
-    req.path.startsWith('/health') ||
-    req.path.startsWith('/admin') ||
-    req.path.startsWith('/staff')
-  ) {
-    return next();
-  }
+// SPA fallback for portal (any non-api, non-special path, including root)
+app.get(/^\/(?!api|webhooks|health|admin|staff).*$/, (_req, res) => {
   res.sendFile(path.join(portalDist, 'index.html'));
 });
 
