@@ -1,7 +1,7 @@
--- Plot Holders Club Database Schema
+-- Plot Holders Club Database Schema (idempotent)
 
 -- Customers table
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS customers (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   phone VARCHAR(20) UNIQUE NOT NULL,
   email VARCHAR(255) UNIQUE,
@@ -22,7 +22,7 @@ CREATE TABLE customers (
 );
 
 -- Acres ledger (immutable records of acre awards)
-CREATE TABLE acres (
+CREATE TABLE IF NOT EXISTS acres (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   customer_id UUID NOT NULL REFERENCES customers(id),
   channel VARCHAR(20) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE acres (
 );
 
 -- Rewards redemption history
-CREATE TABLE rewards (
+CREATE TABLE IF NOT EXISTS rewards (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   customer_id UUID NOT NULL REFERENCES customers(id),
   tier VARCHAR(20) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE rewards (
 );
 
 -- Referral tracking
-CREATE TABLE referrals (
+CREATE TABLE IF NOT EXISTS referrals (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   referrer_id UUID NOT NULL REFERENCES customers(id),
   referred_id UUID NOT NULL REFERENCES customers(id),
@@ -58,7 +58,7 @@ CREATE TABLE referrals (
 );
 
 -- Shopify sync tracking (prevents duplicate webhook processing)
-CREATE TABLE shopify_sync (
+CREATE TABLE IF NOT EXISTS shopify_sync (
   order_id BIGINT PRIMARY KEY,
   customer_id UUID REFERENCES customers(id),
   acres_awarded INT,
@@ -66,7 +66,7 @@ CREATE TABLE shopify_sync (
 );
 
 -- Qashier CSV import audit log
-CREATE TABLE qashier_imports (
+CREATE TABLE IF NOT EXISTS qashier_imports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   filename VARCHAR(255),
   rows_processed INT,
@@ -76,11 +76,11 @@ CREATE TABLE qashier_imports (
 );
 
 -- Indexes for performance
-CREATE INDEX idx_customers_phone ON customers(phone);
-CREATE INDEX idx_customers_email ON customers(email);
-CREATE INDEX idx_customers_tier ON customers(tier);
-CREATE INDEX idx_acres_customer_id ON acres(customer_id);
-CREATE INDEX idx_acres_channel_source ON acres(channel, source_id);
-CREATE INDEX idx_rewards_customer_id ON rewards(customer_id);
-CREATE INDEX idx_customers_shopify_id ON customers(shopify_customer_id);
-CREATE INDEX idx_customers_referral_code ON customers(referral_code);
+CREATE INDEX IF NOT EXISTS idx_customers_phone ON customers(phone);
+CREATE INDEX IF NOT EXISTS idx_customers_email ON customers(email);
+CREATE INDEX IF NOT EXISTS idx_customers_tier ON customers(tier);
+CREATE INDEX IF NOT EXISTS idx_acres_customer_id ON acres(customer_id);
+CREATE INDEX IF NOT EXISTS idx_acres_channel_source ON acres(channel, source_id);
+CREATE INDEX IF NOT EXISTS idx_rewards_customer_id ON rewards(customer_id);
+CREATE INDEX IF NOT EXISTS idx_customers_shopify_id ON customers(shopify_customer_id);
+CREATE INDEX IF NOT EXISTS idx_customers_referral_code ON customers(referral_code);

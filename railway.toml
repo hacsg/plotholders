@@ -11,8 +11,8 @@ cmds = ["npm install"]
 cmds = ["npm run build"]
 
 [deploy]
-startCommand = "npm run build && npm run migrate && node dist/index.js"
+startCommand = "[ -d dist ] || npm run build && npm run migrate && node dist/index.js"
 healthcheckPath = "/health"
-healthcheckTimeout = 30
+healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
