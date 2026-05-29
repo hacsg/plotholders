@@ -8,7 +8,7 @@ nixPkgs = ["nodejs_20", "npm-9_x"]
 cmds = ["npm install"]
 
 [build.nixpacksPlan.phases.build]
-cmds = ["npm run build"]
+cmds = ["rm -rf dist && npm run build"]
 
 [deploy]
 startCommand = "npm run build && npm run migrate && node dist/index.js"
