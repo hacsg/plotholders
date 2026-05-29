@@ -1,0 +1,4 @@
+Date,Time,Receipt No,Items,Total,Payment Method,Customer Phone,Customer Name,Outlet
+2025-04-01,10:15:22,RCPT-88291,Flat White + Croissant,12.50,Card,+6591234567,Edmund Tan,Orchard
+2025-04-01,11:03:44,RCPT-88292,Iced Latte,6.80,Cash,91234567,Jane Lim,Marina Bay
+2025-04-02,09:22:10,RCPT-88293,Pour Over + Muffin,15.00,Card,6581234567,Alex Wong,Tampines

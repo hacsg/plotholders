@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Plot Holders • Staff</title>
+    <style>
+      :root { --primary: #2f6f3e; }
+      body { margin:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#f8f5f0; color:#222; }
+      .app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+      .header { background: var(--primary); color: white; padding: 16px 20px; text-align: center; }
+      .header h1 { margin:0; font-size: 20px; letter-spacing: 0.5px; }
+      input, button { font-size: 18px; padding: 14px 16px; border-radius: 10px; }
+      input { width: 100%; box-sizing: border-box; border: 2px solid #ddd; margin-bottom: 12px; }
+      input:focus { border-color: var(--primary); outline: none; }
+      button { background: var(--primary); color: white; border: none; font-weight: 600; cursor: pointer; width: 100%; }
+      button:active { opacity: 0.85; }
+      .card { margin: 20px; padding: 20px; border-radius: 16px; border: 1px solid #eee; background: #fafaf8; }
+      .tier-badge { display:inline-block; padding:4px 12px; border-radius:999px; font-size:13px; font-weight:700; background:#e8f0e9; color:#2f6f3e; }
+      .stat { font-size: 42px; font-weight: 800; line-height:1; color: #2f6f3e; }
+      .reward-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-top:1px solid #eee; }
+      .success { background:#e6f4e8; color:#1f5a2e; padding:16px; border-radius:12px; text-align:center; font-weight:600; }
+      .error { color:#c0392b; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>

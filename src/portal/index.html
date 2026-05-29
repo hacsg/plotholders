@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plot Holders Club</title>
+    <style>
+      body { margin:0; font-family: system-ui, sans-serif; background:#f7f4ed; color:#222; }
+      .container { max-width: 960px; margin:0 auto; padding: 20px; }
+      .nav { display:flex; gap:16px; padding:12px 0; border-bottom: 2px solid #2f6f3e; margin-bottom:24px; }
+      .nav a { color:#2f6f3e; text-decoration:none; font-weight:600; }
+      .card { background:white; border-radius:16px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:20px; }
+      .tier-badge { font-size:15px; padding:6px 14px; border-radius:999px; background:#e8f0e9; color:#2f6f3e; display:inline-block; font-weight:700; }
+      .progress { height:12px; background:#eee; border-radius:999px; overflow:hidden; margin:12px 0; }
+      .progress-bar { height:100%; background:#2f6f3e; }
+      button { background:#2f6f3e; color:white; border:none; padding:12px 20px; border-radius:10px; font-weight:600; cursor:pointer; }
+      input { padding:12px; border:2px solid #ccc; border-radius:8px; width:100%; box-sizing:border-box; font-size:16px; }
+      table { width:100%; border-collapse: collapse; }
+      th, td { text-align:left; padding:10px 8px; border-bottom:1px solid #eee; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>
