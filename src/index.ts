@@ -22,6 +22,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import path from 'path';
 
 dotenv.config();
+const DIST_DIR = path.resolve(process.cwd(), 'dist');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -119,9 +120,6 @@ app.use('/webhooks', webhooksRouter);
 // ============================================
 // Static frontend serving (Phase 2)
 // ============================================
-
-const DIST_DIR = path.resolve(process.cwd(), 'dist');
-
 // Debug endpoint to check dist directory
 app.get('/debug', (_req, res) => {
   const distPath = DIST_DIR;
